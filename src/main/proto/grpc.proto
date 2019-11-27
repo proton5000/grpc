@@ -2,20 +2,14 @@ syntax = "proto3";
 option java_multiple_files = true;
 package org.grpc;
 
-import "google/api/annotations.proto";
-
-message GrpcRequest {
-    string value = 1;
+service Greeter {
+    rpc SayHello (HelloRequest) returns (HelloReply) {}
 }
 
-message GrpcResponse {
-    string greeting = 1;
+message HelloRequest {
+    string name = 1;
 }
 
-service GrpcService {
-    rpc sendRpcRequest(GrpcRequest) returns (GrpcResponse) {
-            option (google.api.http) = {
-                get: "/"
-            };
-    };
+message HelloReply {
+    string message = 1;
 }
